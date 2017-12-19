@@ -287,6 +287,28 @@ All new API's shall adhere to the principles of REST (http://www.ics.uci.edu/~fi
   - `first` (first page, required)
   - `last` (last page, required)
 - Paging `_links` will include filters.
+- Paging will be done via a cursor, not a page offset
+
+```json
+{
+  "page_size": 100,
+  "cursor": "19284743",
+  "_embedded": [
+    {"data": "here"}
+  ],
+  "_links": {
+    "self": {
+      "href": "https://example.com/resource?page_size=100&order=asc&cursor=19284743"
+    },
+    "next": {
+      "href": "https://example.com/resource?page_size=100&order=asc&cursor=19291731"
+    },
+    "prev": {
+      "href": "https://example.com/resource?page_size=100&order=asc&cursor=19283018"
+    }
+  }
+}
+```
 
 
 API specs
